@@ -9,19 +9,47 @@ const option1 = document.getElementById("option1");
 const option2 = document.getElementById("option2");
 const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
+const nextBtn = document.getElementById("nextBtn");
 
-async function loadQuestion() {
-  const querySnapshot = await getDocs(collection(db, "questions"));
+let questions = [];
+let currentQuestion = 0;
 
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
+async function loadQuestions() {
+    const querySnapshot = await getDocs(collection(db, "questions"));
 
-    question.innerText = data.question;
-    option1.innerText = data.option1;
-    option2.innerText = data.option2;
-    option3.innerText = data.option3;
-    option4.innerText = data.option4;
-  });
+    querySnapshot.forEach((doc) => {
+        questions.push(doc.data());
+    });
+
+    showQuestion();
 }
 
-loadQuestion();
+function showQuestion() {
+
+    let q = questions[currentQuestion];
+
+    question.innerText = q.question;
+    option1.innerText = q.option1;
+    option2.innerText = q.option2;
+    option3.innerText = q.option3;
+    option4.innerText = q.option4;
+
+    if(currentQuestion === questions.length - 1){
+        nextBtn.innerText = "Submit";
+    }else{
+        nextBtn.innerText = "Next";
+    }
+}
+
+nextBtn.addEventListener("click", () => {
+
+    if(currentQuestion < questions.length - 1){
+        currentQuestion++;
+        showQuestion();
+    }else{
+        alert("Test Completed!");
+    }
+
+});
+
+loadQuestions();
