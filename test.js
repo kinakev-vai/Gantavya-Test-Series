@@ -43,11 +43,40 @@ function showQuestion() {
 
 nextBtn.addEventListener("click", () => {
 
-    if(currentQuestion < questions.length - 1){
+    const selected = document.querySelector('input[name="option"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer!");
+        return;
+    }
+
+    const q = questions[currentQuestion];
+
+    let selectedAnswer = "";
+
+    if (selected.value == "1") {
+        selectedAnswer = q.option1;
+    } else if (selected.value == "2") {
+        selectedAnswer = q.option2;
+    } else if (selected.value == "3") {
+        selectedAnswer = q.option3;
+    } else if (selected.value == "4") {
+        selectedAnswer = q.option4;
+    }
+
+    // Score check
+    if (selectedAnswer === q.answer) {
+        score++;
+    }
+
+    // Radio button uncheck
+    selected.checked = false;
+
+    if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         showQuestion();
-    }else{
-        alert("Test Completed!");
+    } else {
+        alert("🎉 Test Completed!\n\nYour Score: " + score + " / " + questions.length);
     }
 
 });
