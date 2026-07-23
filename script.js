@@ -1,38 +1,21 @@
-// Gantavya Test Series
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "./firebase.js";
 
-// Home Page Start Test Button
-function startTest() {
-    window.location.href = "login.html";
-}
+// ----------------------
+// Registration
+// ----------------------
 
-// Login Button
-const loginBtn = document.getElementById("loginBtn");
-
-if (loginBtn) {
-    loginBtn.addEventListener("click", function () {
-
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        if (email === "" || password === "") {
-            alert("Please enter Email and Password");
-            return;
-        }
-
-        alert("Login feature will be connected with Firebase.");
-
-    });
-}
-
-// Register Button
 const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
 
-    registerBtn.addEventListener("click", function () {
+    registerBtn.addEventListener("click", () => {
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
         if (name === "" || email === "" || password === "") {
@@ -40,7 +23,55 @@ if (registerBtn) {
             return;
         }
 
-        alert("Registration feature will be connected with Firebase.");
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+
+                alert("Registration Successful");
+
+                window.location.href = "dashboard.html";
+
+            })
+            .catch((error) => {
+
+                alert(error.message);
+
+            });
+
+    });
+
+}
+
+// ----------------------
+// Login
+// ----------------------
+
+const loginBtn = document.getElementById("loginBtn");
+
+if (loginBtn) {
+
+    loginBtn.addEventListener("click", () => {
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (email === "" || password === "") {
+            alert("Please enter Email and Password");
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+
+                alert("Login Successful");
+
+                window.location.href = "dashboard.html";
+
+            })
+            .catch((error) => {
+
+                alert(error.message);
+
+            });
 
     });
 
