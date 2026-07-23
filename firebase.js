@@ -3,9 +3,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyB3MxWODlavvudFu0utDUUCVnH1VM-UA_8",
   authDomain: "gantavya-test-series.firebaseapp.com",
