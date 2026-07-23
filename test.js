@@ -76,7 +76,10 @@ nextBtn.addEventListener("click", () => {
         currentQuestion++;
         showQuestion();
     } else {
-        alert("🎉 Test Completed!\n\nYour Score: " + score + " / " + questions.length);
+       localStorage.setItem("score", score);
+localStorage.setItem("total", questions.length);
+
+window.location.href = "result.html";
     }
 
 });
