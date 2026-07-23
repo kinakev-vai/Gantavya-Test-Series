@@ -13,7 +13,7 @@ const nextBtn = document.getElementById("nextBtn");
 
 let questions = [];
 let currentQuestion = 0;
-
+let score = 0;
 async function loadQuestions() {
     const querySnapshot = await getDocs(collection(db, "questions"));
 
