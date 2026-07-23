@@ -12,22 +12,26 @@ const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
 
 async function loadQuestion() {
+  try {
 
     const querySnapshot = await getDocs(collection(db, "questions"));
 
     querySnapshot.forEach((doc) => {
 
-        const data = doc.data();
+      const data = doc.data();
 
-        question.innerHTML = data.question;
-
-        option1.innerHTML = data.option1;
-        option2.innerHTML = data.option2;
-        option3.innerHTML = data.option3;
-        option4.innerHTML = data.option4;
+      question.innerText = data.question;
+      option1.innerText = data.option1;
+      option2.innerText = data.option2;
+      option3.innerText = data.option3;
+      option4.innerText = data.option4;
 
     });
 
+  } catch (error) {
+    console.error(error);
+    alert("Question loading failed!");
+  }
 }
 
 loadQuestion();
