@@ -22,5 +22,7 @@ const auth = getAuth(app);
 export {
   auth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 };
