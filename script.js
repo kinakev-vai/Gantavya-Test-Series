@@ -1,19 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Gantavya Test Series
 
-    const loginBtn = document.getElementById("loginBtn");
+// Home Page Start Test Button
+function startTest() {
+    window.location.href = "login.html";
+}
 
-    if(loginBtn){
-        loginBtn.addEventListener("click", () => {
-            alert("Firebase Login will be added in next step.");
-        });
-    }
+// Login Button
+const loginBtn = document.getElementById("loginBtn");
 
-    const registerBtn = document.getElementById("registerBtn");
+if (loginBtn) {
+    loginBtn.addEventListener("click", function () {
 
-    if(registerBtn){
-        registerBtn.addEventListener("click", () => {
-            alert("Firebase Registration will be added in next step.");
-        });
-    }
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-});
+        if (email === "" || password === "") {
+            alert("Please enter Email and Password");
+            return;
+        }
+
+        alert("Login feature will be connected with Firebase.");
+
+    });
+}
+
+// Register Button
+const registerBtn = document.getElementById("registerBtn");
+
+if (registerBtn) {
+
+    registerBtn.addEventListener("click", function () {
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (name === "" || email === "" || password === "") {
+            alert("Please fill all fields");
+            return;
+        }
+
+        alert("Registration feature will be connected with Firebase.");
+
+    });
+
+}
